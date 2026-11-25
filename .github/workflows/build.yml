@@ -1,0 +1,16 @@
+name: Build cBot
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+      - run: dotnet build -c Release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GU_H1_SMC_Bot_Algo
+          path: bin/Release/net6.0/*.algo
+          
